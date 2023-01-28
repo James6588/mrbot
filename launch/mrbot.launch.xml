@@ -1,0 +1,16 @@
+<?xml version='1.0' ?>
+<launch>
+  
+
+  <!-- Launch World independently from spawning robots -->
+  <include file="$(find-pkg-share mrbot)/launch/start_world.launch.py"/>
+ 
+  <!-- Launch Robot_1 -->
+  <include file="$(find-pkg-share mrbot)/launch/robot_1.launch.xml"/>
+  
+  <!-- Launch Robot_2 
+  <include file="$(find-pkg-share mrbot)/launch/robot_2.launch.xml"/>
+  -->
+  
+  
+</launch>

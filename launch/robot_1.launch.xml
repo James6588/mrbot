@@ -1,0 +1,17 @@
+<?xml version='1.0' ?>
+<launch>
+  
+
+  <!-- Launch spawn.launch.xml -->
+  <include file="$(find-pkg-share mrbot)/launch/spawn.launch.xml">
+    <arg name="x_pos" value="0.0"/>
+    <arg name="y_pos" value="0.0"/>
+    <arg name="Y_pos" value="-0.7854"/>
+    <arg name="robot_name" value="robot_1"/>   
+  </include>
+  
+ 
+ 
+  
+  
+</launch>
