@@ -8,9 +8,14 @@
   <!-- Launch Robot_1 -->
   <include file="$(find-pkg-share mrbot)/launch/robot_1.launch.xml"/>
   
-  <!-- Launch Robot_2 
+  <!-- Launch Robot_2 -->
   <include file="$(find-pkg-share mrbot)/launch/robot_2.launch.xml"/>
-  -->
   
+  <!-- Launch map server -->
+  <include file="$(find-pkg-share mrbot)/launch/mapserver.launch.xml"/>
+  
+  <!-- Launch lifecycle manager  -->
+  <include file="$(find-pkg-share mrbot)/launch/lifemanager.launch.xml"/>
+ 
   
 </launch>

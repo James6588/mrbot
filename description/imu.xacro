@@ -25,23 +25,18 @@
         <material>Gazebo/Orange</material>
         <sensor name="imu" type="imu">
             <always_on>true</always_on>
-            <update_rate>100</update_rate>
+            <update_rate>200</update_rate>
             <visualize>true</visualize> 
-            <topic>__default_topic__</topic>
+            <pose>0 0 0 0 0 0</pose>
+
             
             <plugin name="imu" filename="libgazebo_ros_imu_sensor.so">
                  <ros>
-                     <argument>~/out:=imu_data</argument>
-                 </ros>
-                 <topicName>imu_frame</topicName>
-                 <bodyName>imu_frame</bodyName>
-                 <gaussianNoise>0.0</gaussianNoise>
-                 <xyzOffset>0 0 0</xyzOffset>
-                 <rpyOffset>0 0 0</rpyOffset>
-                 <frameName>imu_frame</frameName>
-                 <initialOrientationAsReference>false</initialOrientationAsReference>   
-            </plugin>
-            <pose>0 0 0 0 0 0</pose>
+                     <namespace>$(arg robot_name)</namespace>
+                     <argument>~/out:=imu</argument>
+                 </ros> 
+                 <frame_name>$(arg robot_name)/imu_frame</frame_name>                     
+            </plugin>              
         </sensor>
     </gazebo>
 

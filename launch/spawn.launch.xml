@@ -28,19 +28,43 @@
           -Y $(var Y_pos)
           -topic robot_description">   
   </node> 
-  
+ 
+    
   <node pkg="robot_localization" exec="ekf_node" name="ekf_filter" 
     output="screen" namespace="$(var robot_name)">
     <param name="tf_prefix" value="$(var robot_name)"/> 
     <param name="use_sim_tim" value="true" />
     <param from="$(find-pkg-share mrbot)/config/$(var robot_name).yaml" /> 
-    <!--      
+    <!--   
     <remap from="/tf" to="tf"/>
     <remap from="/tf_static" to="tf_static"/> 
-    -->
-  
+    -->  
+  </node> 
+ 
+
+  <node pkg="nav2_amcl" exec="amcl" name="amcl" namespace="$(var robot_name)"
+    output="screen">
+    <param from="$(find-pkg-share mrbot)/config/$(var robot_name)_amcl.yaml" />  
+  </node>  
+
+  <node pkg="nav2_controller" exec="controller_server" name="controller_server" 
+    namespace="$(var robot_name)" output="screen">
+    <param from="$(find-pkg-share mrbot)/config/$(var robot_name)_ctrl.yaml" />
   </node>
-  
-     
-  
+
+  <node pkg="nav2_planner" exec="planner_server" name="planner_server" 
+    namespace="$(var robot_name)" output="screen">
+    <param from="$(find-pkg-share mrbot)/config/$(var robot_name)_planner.yaml" />
+  </node>  
+
+  <node pkg="nav2_behaviors" exec="behavior_server" name="behavior_server" 
+    namespace="$(var robot_name)" output="screen">
+    <param from="$(find-pkg-share mrbot)/config/$(var robot_name)_recovery.yaml" />
+  </node>  
+
+  <node pkg="nav2_bt_navigator" exec="bt_navigator" name="bt_navigator" 
+    namespace="$(var robot_name)" output="screen">
+    <param from="$(find-pkg-share mrbot)/config/$(var robot_name)_btnav.yaml" />
+  </node>  
+
 </launch>
