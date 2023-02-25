@@ -1,0 +1,17 @@
+<?xml version='1.0' ?>
+<launch>
+
+  <node pkg="nav2_lifecycle_manager" exec="lifecycle_manager" name="lifecycle_manager_localization"
+    output="screen">
+    <param name="use_sim_time" value="true"/>
+    <param name="autostart" value="true"/>
+    <param name="bond_timeout" value="0.0"/>
+    <param name="node_names" value="[map_server, 
+                                     robot_1/amcl,
+                                     robot_2/amcl
+                                      ]"/>                               
+                                     
+  </node>  
+  
+
+</launch>

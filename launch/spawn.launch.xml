@@ -1,8 +1,9 @@
 <?xml version='1.0' ?>
 <launch>
-  <arg name="x_pos" default="0"/>
-  <arg name="y_pos" default="0"/>
-  <arg name="Y_pos" default="0"/>
+
+  <arg name="x_pos" default="0.0"/>
+  <arg name="y_pos" default="0.0"/>
+  <arg name="P_pos" default="0.0"/> 
   <arg name="robot_name" default="robot_1"/>
 
   <!-- Launch robot state publisher -->
@@ -14,8 +15,7 @@
     <!--
     <remap from="/tf" to="tf"/>
     <remap from="/tf_static" to="tf_static"/>
-    -->
-    
+    -->    
   </node>
   
   <!-- Spawn a robot in the world -->
@@ -25,46 +25,28 @@
           -robot_namespace $(var robot_name)
           -x $(var x_pos)
           -y $(var y_pos)
-          -Y $(var Y_pos)
+          -P $(var P_pos)
           -topic robot_description">   
   </node> 
+
  
-    
+  <!-- Odometry data-fusion -->      
   <node pkg="robot_localization" exec="ekf_node" name="ekf_filter" 
     output="screen" namespace="$(var robot_name)">
     <param name="tf_prefix" value="$(var robot_name)"/> 
     <param name="use_sim_tim" value="true" />
-    <param from="$(find-pkg-share mrbot)/config/$(var robot_name).yaml" /> 
-    <!--   
+    <param from="$(find-pkg-share mrbot)/config/$(var robot_name)_ekf.yaml" /> 
+    <!--
     <remap from="/tf" to="tf"/>
     <remap from="/tf_static" to="tf_static"/> 
-    -->  
+    -->
   </node> 
- 
-
+   
+<!--
   <node pkg="nav2_amcl" exec="amcl" name="amcl" namespace="$(var robot_name)"
     output="screen">
     <param from="$(find-pkg-share mrbot)/config/$(var robot_name)_amcl.yaml" />  
   </node>  
-
-  <node pkg="nav2_controller" exec="controller_server" name="controller_server" 
-    namespace="$(var robot_name)" output="screen">
-    <param from="$(find-pkg-share mrbot)/config/$(var robot_name)_ctrl.yaml" />
-  </node>
-
-  <node pkg="nav2_planner" exec="planner_server" name="planner_server" 
-    namespace="$(var robot_name)" output="screen">
-    <param from="$(find-pkg-share mrbot)/config/$(var robot_name)_planner.yaml" />
-  </node>  
-
-  <node pkg="nav2_behaviors" exec="behavior_server" name="behavior_server" 
-    namespace="$(var robot_name)" output="screen">
-    <param from="$(find-pkg-share mrbot)/config/$(var robot_name)_recovery.yaml" />
-  </node>  
-
-  <node pkg="nav2_bt_navigator" exec="bt_navigator" name="bt_navigator" 
-    namespace="$(var robot_name)" output="screen">
-    <param from="$(find-pkg-share mrbot)/config/$(var robot_name)_btnav.yaml" />
-  </node>  
+-->
 
 </launch>

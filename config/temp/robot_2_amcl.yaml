@@ -1,4 +1,4 @@
-robot_1/amcl:
+robot_2/amcl:
   ros__parameters:
     use_sim_time: True
     alpha1: 0.2
@@ -6,7 +6,7 @@ robot_1/amcl:
     alpha3: 0.2
     alpha4: 0.2
     alpha5: 0.2
-    base_frame_id: "robot_1/base_link"
+    base_frame_id: "robot_2/base_link"
     beam_skip_distance: 0.5
     beam_skip_error_threshold: 0.9
     beam_skip_threshold: 0.3
@@ -20,9 +20,9 @@ robot_1/amcl:
     max_beams: 60
     max_particles: 2000
     min_particles: 500
-    odom_frame_id: "robot_1/odom"
+    odom_frame_id: "robot_2/odom"
     pf_err: 0.05
-    pf_z: 0.99
+    pf_z: 0.99 
     recovery_alpha_fast: 0.0
     recovery_alpha_slow: 0.0
     resample_interval: 1
@@ -40,17 +40,18 @@ robot_1/amcl:
     scan_topic: scan
     map_topic: /map
     # ACTIVATE THE set_initial_pose WHEN YOU HAVE A PROPER initial_pose, by uncommenting the code below
-    set_initial_pose: true
-    initial_pose:
-      x: -0.2
-      y: 0.0
-      yaw: -0.7854
-    # a: -0.211
+    set_initial_pose: True
+    initial_pose: 
+      x: 0.0
+      y: 2.0
+      z: 0.0
+      a: -0.7854
 
-robot_1/amcl_map_client:
+
+robot_2/amcl_map_client:
   ros__parameters:
     use_sim_time: True
 
-robot_1/amcl_rclcpp_node:
+robot_2/amcl_rclcpp_node:
   ros__parameters:
     use_sim_time: True
